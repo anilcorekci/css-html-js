@@ -47,11 +47,17 @@ while (x < 15) {
   node.setAttribute("class", "row");
   
   for (let i = 0; i < 15; i++) {
-    const newDiv = document.createElement("div");
-    newDiv.setAttribute("class", "seat");
+    if (i % 4 == 0) {
+      newDiv = document.createElement("div");
+      newDiv.setAttribute("class", "seat sold");
+    }
+    else{
+      newDiv = document.createElement("div");
+      newDiv.setAttribute("class", "seat");
+    }
+
     node.appendChild(newDiv);
     currentDiv.appendChild(node);
-
   }
 }
 
