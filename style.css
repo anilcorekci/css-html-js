@@ -1,15 +1,17 @@
-
+ 
 body {
   background-color:rgb(0, 0, 0);
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.13) 0%,rgba(0,0,0,0.01) 1%,rgb(104, 12, 12) 100%);  
   color: #fff;
-  display: flex;
-  flex-direction: column;
+
   align-items: center;
   justify-content: center;
   height: 100vh;
-
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top:50px;
+  margin-bottom: 50px;
+  transform: scale(0.5,0.5);
 }
 
 .movie-container {
@@ -31,6 +33,7 @@ body {
 .container {
   perspective: 1000px;
   margin-bottom: 30px;
+  grid-template-columns: minmax(10px, auto) 1fr 1fr;  
 }
 
 .seat {
