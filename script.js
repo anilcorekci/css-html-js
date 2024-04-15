@@ -9,9 +9,9 @@ const movieSelect = document.getElementById("movie");
 /************** watch media to fit the size  **********************/
 const mql = window.matchMedia("(max-width: 600px)");
 const mql1 = window.matchMedia("(max-height: 600px)");
+
+
 function screenTest(e) {
-  document.body.style.marginTop = '50px';
-  document.body.style.marginBottom = '50px';
   
   if (e.matches) {
     /* the viewport is 600 pixels wide or less */
@@ -27,30 +27,50 @@ function screenTest1(e) {
     document.body.style.marginTop = '300px';
     document.body.style.marginBottom = '300px';
   } 
-}
-mql.addEventListener("change", screenTest);
-mql1.addEventListener("change", screenTest1);
-/***********Let's give a clean outlook to html ************ */
-const currentDiv = document.getElementById("container");
-x=0
-while (x < 15) {
-  x++;
-  const node = document.createElement("div");
-  node.setAttribute("class", "row");
-
-  for (let i = 0; i < 15; i++) {
-    if (i == Math.floor(Math.random() * (15)) ) {
-      newDiv = document.createElement("div");
-      newDiv.setAttribute("class", "seat sold");
-    }
-    else{
-      newDiv = document.createElement("div");
-      newDiv.setAttribute("class", "seat");
-    }
-    node.appendChild(newDiv);
-    currentDiv.appendChild(node);
+  else{
+    document.body.style.marginTop = "10px"
+    document.body.style.marginBottom = "10px"
   }
 }
+
+mql.addEventListener("change", screenTest);
+mql1.addEventListener("change", screenTest1);
+
+/***********Let's give a clean outlook to html ************ */
+function play_game(x) {
+  if (x == 1) {
+
+    document.querySelectorAll(".row .seat:not(.sold)").forEach(el =>{
+      x++
+      if ( x % 8 === 0){
+        el.classList.toggle("sold")
+        updateSelectedCount()
+      }  
+    });
+    return
+  }
+  const currentDiv = document.getElementById("container");
+  document.querySelectorAll('.row *').forEach(el =>  el.remove() );
+  x=0
+  while (x < 15) {
+    x++;
+    const node = document.createElement("div");
+    node.setAttribute("class", "row");
+
+    for (let i = 0; i < 15; i++) {
+      newDiv = document.createElement("div");
+      if (i == Math.floor(Math.random() * (15)) )  {
+        newDiv.setAttribute("class", "seat sold");
+      }
+      else{
+        newDiv.setAttribute("class", "seat");
+      }
+      node.appendChild(newDiv);
+      currentDiv.appendChild(node);
+    }
+  }
+}
+play_game(0)
 /************************** */  
 populateUI();
 let ticketPrice = +movieSelect.value;
@@ -64,6 +84,7 @@ function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
   const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
   localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
@@ -99,7 +120,9 @@ container.addEventListener("click", (e) => {
     !e.target.classList.contains("sold")
   ) {
     e.target.classList.toggle("selected");
-    updateSelectedCount();
+    updateSelectedCount();    
+    play_game(1)
+
   }
 });
 // Initial count and total set
