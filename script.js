@@ -47,7 +47,7 @@ while (x < 15) {
   node.setAttribute("class", "row");
   
   for (let i = 0; i < 15; i++) {
-    if (i % 4 == 0) {
+    if (i == Math.floor(Math.random() * (15)) ) {
       newDiv = document.createElement("div");
       newDiv.setAttribute("class", "seat sold");
     }
