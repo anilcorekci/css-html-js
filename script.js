@@ -10,28 +10,34 @@ const movieSelect = document.getElementById("movie");
 
 
 /************** watch media to fit the size  **********************/
-const mql = window.matchMedia("(max-width: 600px)");
-const mql1 = window.matchMedia("(max-height: 600px)");
+const mql = window.matchMedia("(max-width: 1000px)");
+const mql1 = window.matchMedia("(max-height: 400px)");
 
 function screenTest(e) {
-  document.body.style.marginTop = '50px';
-  document.body.style.marginBottom = '50px';
+
   
   if (e.matches) {
-    /* the viewport is 600 pixels wide or less */
     document.body.style.transform = 'scale(0.5,0.5)';
+
   } else {
     /* the viewport is more than 600 pixels wide */
+	document.body.style.marginTop = window.innerHeight/4+ "px"
+	document.body.style.marginBottom = window.innerHeight/4+ "px"
     document.body.style.transform = 'scale(1,1)';
   }
 }
 function screenTest1(e) {
-  if (e.matches) {
-    /* the viewport is 600 pixels wide or less */    
-    document.body.style.marginTop = '300px';
-    document.body.style.marginBottom = '300px';
+  if (e.matches) {    
+/*    document.body.style.transform = 'scale(0.5,0.5)';  */
+	  document.body.style.marginTop = window.innerHeight/2+ "px"
+ 	  document.body.style.marginBottom = window.innerHeight/2+ "px"
 
   } 
+  else{
+	document.body.style.marginTop = "4px"
+	document.body.style.marginBottom = "4px"  
+  }
+
 }
 mql.addEventListener("change", screenTest);
 mql1.addEventListener("change", screenTest1);
