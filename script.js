@@ -42,10 +42,10 @@ function play_game(x) {
 
     document.querySelectorAll(".row .seat:not(.sold)").forEach(el =>{
       x++
-      if ( x % 8 === 0){
+      if ( x % 16 === 0 && !(el.classList.contains("selected")) ){
         el.classList.toggle("sold")
         updateSelectedCount()
-      }  
+      }
     });
     return
   }
