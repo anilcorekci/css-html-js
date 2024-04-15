@@ -126,3 +126,14 @@ p.text span{
     color: rgb(137, 208, 255);
     font-style:italic;
 }
+@media (orientation: portrait) {
+  body{
+    transform: scale(50%,50%);
+    
+  }
+}
+@media (min-width:1000px) {
+  body{
+    transform: scale(100%,100%);
+  }
+}
